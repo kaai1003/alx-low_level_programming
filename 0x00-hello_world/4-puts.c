@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * the function is printing text
+ * main - the function is printing text
  *
  * Description : this program is printing a text message
  * using the function puts
