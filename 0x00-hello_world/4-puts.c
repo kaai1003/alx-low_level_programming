@@ -1,6 +1,8 @@
 #include <stdio.h>
 /**
  * the function is printing text
+ *
+ * Return: 0
  */
 int main(void)
 {
