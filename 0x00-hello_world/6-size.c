@@ -19,6 +19,7 @@ int main(void)
 	long int li_var;
 	long long int lli_var;
 	float f_var;
+
 	printf("Size of a char: %lu byte(s)\n", sizeof(c_var));
 	printf("Size of an int: %lu byte(s)\n", sizeof(i_var));
 	printf("Size of a long int: %lu byte(s)\n", sizeof(li_var));
