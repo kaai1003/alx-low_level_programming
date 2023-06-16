@@ -1,11 +1,6 @@
 #include <stdio.h>
 /**
  * main - Print size of variable
- * @c_var: char variable
- * @i_var: int variable
- * @li_var: long int variable
- * @lli_var: long long variable
- * @f_var : float variable
  *
  * Description : this program is printing the sizeof variables
  * (char , int , long int , long long int and float)
