@@ -1,8 +1,15 @@
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 /* more headers goes there */
 
 /* betty style doc for function main goes there */
+/**
+ * main - Check if a number 
+ * 
+ * description : check if number n is positive or negative
+ * Return: 0 if function success
+ */
 int main(void)
 {
 	int n;
