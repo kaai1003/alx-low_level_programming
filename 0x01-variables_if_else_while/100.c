@@ -1,12 +1,14 @@
 #include <stdio.h>
 /**
- * main - prin 2 digits
+ * main - print 2 digits
  *
- * description: print 2 digits combinations
+ * description: print combinations of 2 digits
+ * no combinations with same digits
+ * 01 combination is the same as 10 
  * Return: 0 (true)
  */
-int main(void)
-{
+int main(void){
+
 	int d1;
 	int d2;
 
@@ -21,11 +23,13 @@ int main(void)
 			{
 				putchar(d1);
 				putchar(d2);
-					if (n != 56)
+					if (d1 != 56)
 					{
 						putchar(',');
 						putchar(' ');
 					}
+			}
+
 		}
 	}
 	putchar('\n');
