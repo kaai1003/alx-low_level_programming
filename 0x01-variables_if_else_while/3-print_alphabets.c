@@ -3,7 +3,7 @@
  * main - print alphabet
  *
  * description: print alphabets in lower and upper case
- * return: 0 (true)
+ * Return: 0 (true)
  */
 int main(void)
 {
