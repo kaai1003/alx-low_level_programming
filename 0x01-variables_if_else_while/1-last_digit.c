@@ -5,7 +5,7 @@
  * main - print las digit
  *
  * Description: this function is printing the last digit of variable n
- * Return : (0) after success
+ * Return : 0 (success)
  */
 int main(void)
 {
