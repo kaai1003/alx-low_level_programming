@@ -1,15 +1,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
-/* more headers goes there */
 /**
  * main - print las digit
  *
  * Description: this function is printing the last digit of variable n
  * Return : (0) after success
  */
-
-/* betty style doc for function main goes there */
 int main(void)
 {
 	int n;
