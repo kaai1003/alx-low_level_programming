@@ -4,10 +4,11 @@
  *
  * description: print combinations of 2 digits
  * no combinations with same digits
- * 01 combination is the same as 10 
+ * '01' combination is the same as 10
  * Return: 0 (true)
  */
-int main(void){
+int main(void)
+{
 
 	int d1;
 	int d2;
