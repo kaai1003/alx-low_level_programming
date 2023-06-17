@@ -5,7 +5,7 @@
 
 /* betty style doc for function main goes there */
 /**
- * main - Check if a number 
+ * main - Check if a number
  *
  * description : check if number n is positive or negative
  * Return: 0 if function success
