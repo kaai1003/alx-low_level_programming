@@ -2,9 +2,9 @@
 #include <stdlib.h>
 /**
  * _abs - check lowercase caracter .
- * @int: the function accept int argument
+ * @n: the function accept int argument
  *
- * Return: 0
+ * Return: n
  */
 int _abs(int n)
 {
