@@ -1,9 +1,10 @@
 #ifndef main_h
 #define main_h
 /**
- * main.h - include prototype function 
+ * main.h - include prototype functions
  *
  * return:
+ */
 
 int _putchar(char);
 void print_alphabet(void);
