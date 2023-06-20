@@ -3,7 +3,7 @@
  * main - print _putchar
  *
  * this function is display the word "_putchar" using _putchar function
- * return: 0 (success)
+ * Return: 0 (success)
  */
 int main(void)
 {
