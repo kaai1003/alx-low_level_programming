@@ -3,7 +3,7 @@
 /**
  * main function : print _putchar
  *
- * this function is display the word "_putchar" using putchar function
+ * this function is display the word "_putchar" using _putchar function
  * return: 0 (success)
  */
 int main(void)
