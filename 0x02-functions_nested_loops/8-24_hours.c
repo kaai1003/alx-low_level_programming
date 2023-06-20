@@ -1,7 +1,6 @@
 #include "main.h"
 /**
  * jack_bauer - print minutes of the day.
- * @n: the function accept int argument
  *
  * Return: void
  */
