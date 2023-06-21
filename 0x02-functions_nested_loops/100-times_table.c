@@ -2,8 +2,6 @@
 /**
  * print_times_table - print n times table
  * @n: n times tables
- *
- * return: void
  */
 void print_times_table(int n)
 {
