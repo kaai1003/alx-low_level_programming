@@ -15,14 +15,14 @@ int main(void)
 		if (i != 49)
 		{
 			sum = n1 + n2;
-			printf("%d, ", sum);
+			printf("%lu, ", sum);
 			n1 = n2;
 			n2 = sum;
 		}
 		else
 		{
 			sum = n1 + n2;
-			printf("%d\n", sum);
+			printf("%lu\n", sum);
 		}
 	}
 	return (0);
