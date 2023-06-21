@@ -6,7 +6,7 @@
  *
  * Return: result
  */
-int add(int n2, int n2)
+int add(int n1, int n2)
 {
 	int result;
 	result = n1 + n2;
