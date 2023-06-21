@@ -2,26 +2,27 @@
 /**
  * main - print even numbers
  *
- * Return : 0
+ * Return: 0
  */
 int main(void)
 {
 	int i;
-	int sum = 0;
-	int even = 0;
-	int n1 = 0;
-	int n2 = 1;
+	unsigned long int j, k, fibo, even;
 
-	for (i = 0; i < 50; i++)
+	j = 1;
+	k = 2;
+	even = 0;
+	
+	for (i = 1; i <= 33; ++i)
 	{
-		sum = n1 + n2;
-		if (sum % 2 == 0)
+		if (j < 4000000 && (j % 2) == 0)
 		{
-			even = even + sum;
+			even = even + j;
 		}
-		n1 = n2;
-		n2 = sum;
+		fibo = j + k;
+		j = k;
+		k = fibo;
 	}
-	printf("%d\n", even);
+	printf("%lu\n", even);
 	return (0);
 }
