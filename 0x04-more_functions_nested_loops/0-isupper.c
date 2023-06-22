@@ -1,12 +1,12 @@
 #include "main.h"
 #include <ctype.h>
 /**
- * _islower - check upper case  caracter .
+ * _isupper - check upper case  caracter .
  * @c: the caracter to be checked
  *
  * Return: 1 if c uppercase 0 otherwise
  */
-int _islower(int c)
+int _isupper(int c)
 {
         if (isupper(c))
         {
