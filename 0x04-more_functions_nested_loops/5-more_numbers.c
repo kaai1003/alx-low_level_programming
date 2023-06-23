@@ -3,7 +3,7 @@
 /**
  * more_numbers - print 10 times numbers from 0 to 14
  *
- * Return: nothing
+ * Return: no return
  */
 
 void more_numbers(void)
@@ -18,8 +18,8 @@ void more_numbers(void)
 		{
 			if (n >= 10)
 			{
-			_putchar('1');
-			_putchar((n % 10) + 48);
+				_putchar(1 + 48);
+				_putchar((n % 10) + 48);
 			}
 		}
 		_putchar('\n');
