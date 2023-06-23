@@ -8,6 +8,7 @@
 
 void more_numbers(void)
 {
+	
 	int n;
 	int i;
 
@@ -17,8 +18,8 @@ void more_numbers(void)
 		{
 			if (n >= 10)
 			{
-				_putchar('1');
-				_putchar((n % 10) + 48);
+			_putchar('1');
+			_putchar((n % 10) + 48);
 			}
 		}
 		_putchar('\n');
