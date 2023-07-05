@@ -3,7 +3,7 @@
  * _strlen_recursion - print string using recursion
  * @s: string to print
  *
- * Return: return len 
+ * Return: return len
  */
 int _strlen_recursion(char *s)
 {
@@ -11,10 +11,10 @@ int _strlen_recursion(char *s)
 
 	if (*s != '\0')
 	{
-		return(len + _strlen_recursion(s + 1));
+		return (len + _strlen_recursion(s + 1));
 	}
 	else
 	{
-		return(0);
+		return (0);
 	}
 }
