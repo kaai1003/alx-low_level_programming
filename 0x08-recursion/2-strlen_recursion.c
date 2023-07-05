@@ -5,7 +5,7 @@
  *
  * Return: return len 
  */
-void _strlen_recursion(char *s)
+int _strlen_recursion(char *s)
 {
 	int len = 1;
 
