@@ -11,7 +11,7 @@
 char *create_array(unsigned int size, char c)
 {
 	char *arr_char;
-	int i;
+	unsigned int i;
 
 	if (size == 0)
 	{
