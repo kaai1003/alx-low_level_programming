@@ -6,7 +6,7 @@
  * @size: size of the array
  * @c: caractere variable input
  *
- * return: NULL if failed , array char otherwise
+ * Return: NULL if failed , array char otherwise
  */
 char *create_array(unsigned int size, char c)
 {
