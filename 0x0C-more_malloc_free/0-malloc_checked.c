@@ -3,18 +3,21 @@
 #include <stdlib.h>
 /**
  * malloc_checked - allocates memory using malloc
- * @b: variable size to be allocated
+ * @b: memory size
  *
- * Return: 98 on function failure / pointer to allocated memory on success
+ * Return: 98 on failure or pointer on sucess
  */
 void *malloc_checked(unsigned int b)
 {
-	void *mem;
+	int *mem;
 
 	mem = malloc(b);
 	if (mem == NULL)
 	{
-		exit (98);
+		exit(98);
 	}
-	return (mem);
+	else
+	{
+		return (mem);
+	}
 }
