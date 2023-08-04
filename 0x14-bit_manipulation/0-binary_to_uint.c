@@ -50,9 +50,9 @@ unsigned int binary_to_uint(const char *b)
 	{
 		for (len -= 1; len >= 0; len--)
 		{
-			dec += (b[len] - 0) * base;
+			dec += (b[len] - '0') * base;
 			base *= 2;
 		}
-		return (dec)
+		return (dec);
 	}
 }
