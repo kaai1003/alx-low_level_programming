@@ -8,17 +8,18 @@
 int get_lenght(const char *b)
 {
 	int len = 0;
+	int i = 0;
 
 	if (b != NULL)
 	{
-		while (*b)
+		while (b[i] != '\0')
 		{
-			if (*b != '0' && *b != '1')
+			if (b[i] != '0' && b[i] != '1')
 			{
 				len = 0;
 				return (len);
 			}
-			b++;
+			i++;
 			len++;
 		}
 		return (len);
