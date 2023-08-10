@@ -23,27 +23,31 @@ int content_len(char *text_content)
 	return (len);
 }
 /**
- * create_file - create file and write content to it
- * @filename: name of the file to created
- * @text_content: content to write on the file
+ * append_text_to_file - append text to the end of the file
+ * @filename: name of the file
+ * @text_content: pointer to content to append
  *
- * Return: 1 on success -1 on failure
+ * Return: 1 on success or -1 on failure
  */
-int create_file(const char *filename, char *text_content)
+int append_text_to_file(const char *filename, char *text_content)
 {
-	int len;
-	int file_open, file_write;
+	int len, file_open, file_append;
 
 	len = content_len(text_content);
 	if (filename != NULL)
 	{
-		file_open = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+		file_open = open(filename, O_WRONLY | O_APPEND);
 		if (file_open != -1)
 		{
-			if (len != -1)
+			if (len == -1)
 			{
-				file_write = write(file_open, text_content, len);
-				if (file_write == -1)
+				close(file_open);
+				return (1);
+			}
+			else
+			{
+				file_append = write(file_open, text_content, len);
+				if (file_append == -1)
 				{
 					close(file_open);
 					return (-1);
@@ -53,11 +57,6 @@ int create_file(const char *filename, char *text_content)
 					close(file_open);
 					return (1);
 				}
-			}
-			else
-			{
-				close(file_open);
-				return (1);
 			}
 		}
 		else
