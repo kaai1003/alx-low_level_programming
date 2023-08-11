@@ -77,7 +77,7 @@ int copy_file(const char *filename, char *buffer, off_t size)
 		if (open_file != -1)
 		{
 			write_file = write(open_file, buffer, size);
-			if (write_file == -1)
+			if (write_file == -1 || size == 0)
 			{
 				dprintf(2, "Error: Can't write to file %s \n", filename);
 				close_file = close(open_file);
