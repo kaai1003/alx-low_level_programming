@@ -38,8 +38,7 @@ int main(int ac, char **av)
 			}
 			else
 			{
-				do
-				{
+				do {
 					write_file = write(to_file, buffer, read_file);
 					if (write_file == -1 || to_file == -1)
 					{
