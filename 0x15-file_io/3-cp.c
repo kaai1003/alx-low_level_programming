@@ -3,6 +3,7 @@
 #include "main.h"
 
 int copy_file(const char *filename, char *buffer, off_t size);
+void close_file(int file);
 /**
  * main - copies the content of a file to another file
  * @ac: number of arguments
@@ -13,7 +14,7 @@ int copy_file(const char *filename, char *buffer, off_t size);
 int main(int ac, char **av)
 {
 	char *buffer;
-	int open_file, read_file, close_file;
+	int open_file, read_file;
 	off_t content_size;
 
 	if (ac != 3)
@@ -33,22 +34,11 @@ int main(int ac, char **av)
 			if (read_file == -1)
 			{
 				dprintf(2, "Error: Can't read from file %s \n", av[1]);
-				close_file = close(open_file);
-				if (close_file == -1)
-				{
-					dprintf(2, "Error: Can't read from file %d \n", open_file);
-					exit(100);
-				}
 				exit(98);
 			}
 			else
 			{
-				close_file = close(open_file);
-				if (close_file == -1)
-				{
-					dprintf(2, "Error: Can't close fd %d \n", open_file);
-					exit(100);
-				}
+				close_file(open_file);
 				copy_file(av[2], buffer, content_size);
 			}
 		}
@@ -71,7 +61,7 @@ int main(int ac, char **av)
  */
 int copy_file(const char *filename, char *buffer, off_t size)
 {
-	int open_file, write_file, close_file;
+	int open_file, write_file;
 
 	open_file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 		if (open_file != -1)
@@ -80,31 +70,31 @@ int copy_file(const char *filename, char *buffer, off_t size)
 			if (write_file == -1 || size == 0)
 			{
 				dprintf(2, "Error: Can't write to file %s \n", filename);
-				close_file = close(open_file);
-				if (close_file == -1)
-				{
-					dprintf(2, "Error: Can't close fd %d \n", open_file);
-					exit(100);
-				}
 				exit(99);
-			}
-			close_file = close(open_file);
-			if (close_file == -1)
-			{
-				dprintf(2, "Error: Can't close fd %d \n", open_file);
-				exit(100);
 			}
 		}
 		else
 		{
 			dprintf(2, "Error: Can't write to file %s \n", filename);
-			close_file = close(open_file);
-			if (close_file == -1)
-			{
-				dprintf(2, "Error: Can't close fd %d \n", open_file);
-				exit(100);
-			}
 			exit(99);
 		}
 	return (0);
+}
+
+/**
+ * close_file - close opened file after operation finished
+ * @file: file descriptor to terminate and close
+ *
+ * Return: nothing
+ */
+void close_file(int file)
+{
+	int c;
+
+	c = close(file);
+	if (c == -1)
+	{
+		dprintf(2, "Error: Can't close fd %d \n", file);
+		exit(100);
+	}
 }
