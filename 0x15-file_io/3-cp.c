@@ -15,6 +15,7 @@ int main(int ac, char **av)
 {
 	char *buffer;
 	int from_file, read_file, to_file, write_file;
+	unsigned int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
 	if (ac != 3)
 	{
@@ -28,7 +29,7 @@ int main(int ac, char **av)
 		{
 			buffer = buffer_read(av[2]);
 			read_file = read(from_file, buffer, 1024);
-			to_file = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+			to_file = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
 			if (read_file == -1)
 			{
 				dprintf(STDERR_FILENO, "Error: Can't read from file %s \n", av[1]);
@@ -37,7 +38,7 @@ int main(int ac, char **av)
 			}
 			else
 			{
-				while (read_file > 0)
+				do
 				{
 					write_file = write(to_file, buffer, read_file);
 					if (write_file == -1 || to_file == -1)
@@ -47,8 +48,7 @@ int main(int ac, char **av)
 						exit(99);
 					}
 					read_file = read(from_file, buffer, 1024);
-					to_file = open(av[2], O_WRONLY | O_APPEND);
-				}
+				} while (read_file > 0);
 				free(buffer);
 				close_file(from_file);
 				close_file(to_file);
