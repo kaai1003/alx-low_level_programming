@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "main.h"
 
-int copy_file(const char *filename, char *buffer, off_t size);
+char *buffer_read(char *file);
 void close_file(int file);
 /**
  * main - copies the content of a file to another file
@@ -14,37 +14,49 @@ void close_file(int file);
 int main(int ac, char **av)
 {
 	char *buffer;
-	int open_file, read_file;
-	off_t content_size;
+	int from_file, read_file, to_file, write_file;
 
 	if (ac != 3)
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 	else
 	{
-		open_file = open(av[1], O_RDONLY);
-		if (open_file != -1)
+		from_file = open(av[1], O_RDONLY);
+		if (from_file != -1)
 		{
-			content_size = lseek(open_file, 0, SEEK_END);
-			lseek(open_file, 0, SEEK_SET);
-			buffer = (char *)malloc(content_size + 1);
-			read_file = read(open_file, buffer, content_size);
+			buffer = buffer_read(av[2]);
+			read_file = read(from_file, buffer, 1024);
+			to_file = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 			if (read_file == -1)
 			{
-				dprintf(2, "Error: Can't read from file %s \n", av[1]);
+				dprintf(STDERR_FILENO, "Error: Can't read from file %s \n", av[1]);
+				free(buffer);
 				exit(98);
 			}
 			else
 			{
-				close_file(open_file);
-				copy_file(av[2], buffer, content_size);
+				while (read_file > 0)
+				{
+					write_file = write(to_file, buffer, read_file);
+					if (write_file == -1 || to_file == -1)
+					{
+						dprintf(STDERR_FILENO, "Error: Can't write to %s \n", av[2]);
+						free(buffer);
+						exit(99);
+					}
+					read_file = read(from_file, buffer, 1024);
+					to_file = open(av[2], O_WRONLY | O_APPEND);
+				}
+				free(buffer);
+				close_file(from_file);
+				close_file(to_file);
 			}
 		}
 		else
 		{
-			dprintf(2, "Error: Can't read from file %s \n", av[1]);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s \n", av[1]);
 			exit(98);
 		}
 	}
@@ -52,33 +64,25 @@ int main(int ac, char **av)
 }
 
 /**
- * copy_file - insert the content of file_from to file_to
- * @filename: name of the file
- * @buffer: text to insert
- * @size: size of text
+ * buffer_read - allocate memory for buffer string
+ * @file: pointer to file
  *
- * Return: always 0
+ * Return: buffer pointer
  */
-int copy_file(const char *filename, char *buffer, off_t size)
+char *buffer_read(char *file)
 {
-	int open_file, write_file;
+	char *buffer;
 
-	open_file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-		if (open_file != -1)
-		{
-			write_file = write(open_file, buffer, size);
-			if (write_file == -1 || size == 0)
-			{
-				dprintf(2, "Error: Can't write to file %s \n", filename);
-				exit(99);
-			}
-		}
-		else
-		{
-			dprintf(2, "Error: Can't write to file %s \n", filename);
-			exit(99);
-		}
-	return (0);
+	buffer = malloc(sizeof(char) * 1024);
+	if (buffer != NULL)
+	{
+		return (buffer);
+	}
+	else
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+		exit(99);
+	}
 }
 
 /**
@@ -94,7 +98,7 @@ void close_file(int file)
 	c = close(file);
 	if (c == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d \n", file);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d \n", file);
 		exit(100);
 	}
 }
