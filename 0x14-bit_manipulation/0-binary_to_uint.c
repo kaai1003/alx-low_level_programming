@@ -1,4 +1,4 @@
-#include "bits.h"
+#include "main.h"
 /**
  * binary_to_uint - function to convert binary number to int
  * @b: pointer to chars of binary number
