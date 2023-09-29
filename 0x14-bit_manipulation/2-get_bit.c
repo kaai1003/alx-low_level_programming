@@ -5,7 +5,7 @@
  *
  * Return: calculated number
  */
-int number_of_bits(unsigned long int n)
+unsigned int number_of_bits(unsigned long int n)
 {
 	int bits = 0;
 	unsigned long int number = n;
