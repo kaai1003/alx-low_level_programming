@@ -27,7 +27,7 @@ unsigned int number_of_bits(unsigned long int n)
 int get_bit(unsigned long int n, unsigned int index)
 {
 	int bit;
-	unsigned int n_bits;
+	unsigned int n_bits, one = 1;
 
 	n_bits = number_of_bits(n);
 	if (index >= n_bits)
@@ -36,7 +36,7 @@ int get_bit(unsigned long int n, unsigned int index)
 	}
 	else
 	{
-		bit = (n >> index) & 1;
-		return(bit);
+		bit = (n >> index) & one;
+		return (bit);
 	}
 }
