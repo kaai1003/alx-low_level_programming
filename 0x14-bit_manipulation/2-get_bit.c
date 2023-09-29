@@ -30,7 +30,7 @@ int get_bit(unsigned long int n, unsigned int index)
 	unsigned int n_bits;
 
 	n_bits = number_of_bits(n);
-	if (n_bits <= index)
+	if (n_bits < index)
 	{
 		return (-1);
 	}
