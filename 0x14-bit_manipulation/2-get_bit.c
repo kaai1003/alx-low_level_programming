@@ -26,7 +26,7 @@ unsigned int number_of_bits(unsigned long int n)
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int shift;
+	int bit;
 	unsigned int n_bits;
 
 	n_bits = number_of_bits(n);
@@ -36,14 +36,7 @@ int get_bit(unsigned long int n, unsigned int index)
 	}
 	else
 	{
-		shift = 1 << index;
-		if (n & shift)
-		{
-			return (1);
-		}
-		else
-		{
-			return (0);
-		}
+		bit = (n >> index) & 1;
+		return(bit);
 	}
 }
