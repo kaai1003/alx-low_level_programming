@@ -10,7 +10,7 @@ unsigned int number_of_bits(unsigned long int n)
 	unsigned int bits = 0;
 	unsigned long int number = n;
 
-	while (number > 0)
+	while (number >= 1)
 	{
 		bits++;
 		number = number >> 1;
@@ -30,7 +30,7 @@ int get_bit(unsigned long int n, unsigned int index)
 	unsigned int n_bits;
 
 	n_bits = number_of_bits(n);
-	if (n_bits < index)
+	if (index >= n_bits)
 	{
 		return (-1);
 	}
