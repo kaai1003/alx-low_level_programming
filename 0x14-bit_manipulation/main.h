@@ -10,6 +10,5 @@ int get_bit(unsigned long int n, unsigned int index);
 int set_bit(unsigned long int *n, unsigned int index);
 int _putchar(char c);
 int n_bits(unsigned long int n);
-unsigned int number_of_bits(unsigned long int n);
 
 #endif
