@@ -1,4 +1,4 @@
-include "main.h"
+#include "main.h"
 /**
  * clear_bit - set 0 value to bit at given index
  * @n: pointer to number
