@@ -1,11 +1,11 @@
 #include "main.h"
 /**
- * number_of_bits - calculate number of bits on given number
+ * n_bits - calculate number of bits on given number
  * @n: number to calculate
  *
  * Return: calculated number
  */
-int number_of_bits(unsigned long int n)
+int n_bits(unsigned long int n)
 {
 	int bits = 0;
 	unsigned long int number = n;
@@ -37,7 +37,7 @@ void print_binary(unsigned long int n)
 	}
 	else
 	{
-		bits = number_of_bits(n);
+		bits = n_bits(n);
 		for (i = bits - 1; i >= 0; i--)
 		{
 			if ((n >> i) & 1)
