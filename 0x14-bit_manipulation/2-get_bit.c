@@ -7,7 +7,7 @@
  */
 unsigned int number_of_bits(unsigned long int n)
 {
-	int bits = 0;
+	unsigned int bits = 0;
 	unsigned long int number = n;
 
 	while (number > 0)
