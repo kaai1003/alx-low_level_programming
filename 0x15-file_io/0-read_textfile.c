@@ -15,6 +15,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	file = fopen(filename, "r");
 	if (file == NULL)
 	{
+		fclose(file);
 		return (0);
 	}
 	while ((c = fgetc(file)) != EOF)
@@ -22,6 +23,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		w = write(STDOUT_FILENO, &c, 1);
 		if (w == -1)
 		{
+			fclose(file);
 			return (0);
 		}
 		count++;
