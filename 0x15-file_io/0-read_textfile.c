@@ -12,6 +12,10 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	char c;
 	ssize_t count = 0, w, n_letters = letters;
 
+	if (filename == NULL)
+	{
+		return (0);
+	}
 	file = fopen(filename, "r");
 	if (file == NULL)
 	{
