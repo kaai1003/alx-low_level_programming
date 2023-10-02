@@ -8,33 +8,33 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *file;
-	char c;
-	ssize_t count = 0, w, n_letters = letters;
+	char *buffer;
+	ssize_t count = 0, file, rd_file;
 
 	if (filename == NULL)
 	{
 		return (0);
 	}
-	file = fopen(filename, "r");
-	if (file == NULL)
+	buffer = malloc(letters * sizeof(char));
+	if (buffer == NULL)
 	{
 		return (0);
 	}
-	while ((c = fgetc(file)) != EOF)
+	file = open(filename, O_RDONLY);
+	rd_file = read(file, buffer, letters);
+	if (file == -1 || rd_file == -1)
 	{
-		w = write(STDOUT_FILENO, &c, 1);
-		if (w == -1)
-		{
-			fclose(file);
-			return (0);
-		}
-		count++;
-		if (count == n_letters)
-		{
-			break;
-		}
+		free(buffer);
+		return (0);
 	}
-	fclose(file);
+	count = write(STDOUT_FILENO, buffer, rd_file);
+	if (count == -1)
+	{
+		free(buffer);
+		close(file);
+		return (0);
+	}
+	free(buffer);
+	close(file);
 	return (count);
 }
