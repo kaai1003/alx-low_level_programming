@@ -45,14 +45,14 @@ int main(int ac, char **av)
 	}
 	file_from = open(av[1], O_RDONLY);
 	rd_file = read(file_from, buffer, 1024);
-	if (file_from == -1 || rd_file == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s \n", av[1]);
-		free(buffer);
-		exit(98);
-	}
 	file_to = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	do {
+		if (file_from == -1 || rd_file == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s \n", av[1]);
+			free(buffer);
+			exit(98);
+		}
 		wr_file = write(file_to, buffer, rd_file);
 		if (file_to == -1 || wr_file == -1)
 		{
