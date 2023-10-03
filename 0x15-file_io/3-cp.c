@@ -60,7 +60,6 @@ int main(int ac, char **av)
 			free(buffer);
 			exit(99);
 		}
-		_close(file_to);
 		rd_file = read(file_from, buffer, 1024);
 		file_to = open(av[2], O_WRONLY | O_APPEND);
 	} while (rd_file > 0);
