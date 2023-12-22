@@ -28,8 +28,19 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	{
 		hash_node_t *node;
 
-		if (strcmp(list->key, key) == 0)
-			return (0);
+		while (list != NULL)
+		{
+			if (strcmp(list->key, key) == 0)
+			{
+				if (strcmp(list->value, value) == 0)
+					return (1);
+				free(list->value);
+				strcpy(list->value, value);
+				return (1);
+			}
+			list = list->next;
+		}
+		list = ht->array[index];
 		node = insert(list, key, value);
 
 		if (node == NULL)
