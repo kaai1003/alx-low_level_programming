@@ -10,42 +10,34 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
 
-	hash_node_t *list;
-
 	if (key == NULL || ht == NULL)
 		return (0);
 	index = key_index((unsigned char *) key, ht->size);
-	list = ht->array[index];
-	if (list == NULL)
+	if (ht->array[index] == NULL)
 	{
-		list = new_node(key, value);
-		if (list == NULL)
+		ht->array[index] = new_node(key, value);
+		if (ht->array[index] == NULL)
 			return (0);
-		ht->array[index] = list;
 		return (1);
 	}
 	else
 	{
-		hash_node_t *node;
+		hash_node_t *node = ht->array[index];
 
-		while (list != NULL)
+		while (node != NULL)
 		{
-			if (strcmp(list->key, key) == 0)
+			if (strcmp(node->key, key) == 0)
 			{
-				if (strcmp(list->value, value) == 0)
+				if (strcmp(node->value, value) == 0)
 					return (1);
-				free(list->value);
-				strcpy(list->value, value);
+				node->value = malloc(strlen(value) + 1);
+				strcpy(node->value, value);
 				return (1);
 			}
-			list = list->next;
+			node = node->next;
 		}
-		list = ht->array[index];
-		node = insert(list, key, value);
-
-		if (node == NULL)
-			return (0);
-		ht->array[index] = node;
+		node = ht->array[index];
+		ht->array[index] = insert(node, key, value);
 		return (1);
 	}
 }
@@ -57,18 +49,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 */
 hash_node_t *new_node(const char *key, const char *value)
 {
-	hash_node_t *node = malloc(sizeof(hash_node_t *));
+	hash_node_t *node = malloc(sizeof(hash_node_t));
 
 	if (node == NULL)
 		return (NULL);
-	node->key = malloc(strlen(key) + 1);
-	if (node->key == NULL)
-		return (NULL);
-	node->value = malloc(strlen(value) + 1);
-	if (node->value == NULL)
-		return (NULL);
-	strcpy(node->key, key);
-	strcpy(node->value, value);
+	node->key = ((char *) key);
+	node->value = ((char *) value);
 	node->next = NULL;
 	return (node);
 }

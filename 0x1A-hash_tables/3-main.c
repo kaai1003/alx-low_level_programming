@@ -14,8 +14,6 @@ int main(void)
 
 	ht = hash_table_create(1024);
 	hash_table_set(ht, "betty", "yes");
-	hash_table_set(ht, "betty", "cool");
-	hash_table_set(ht, "hetairas", "try");
-	hash_table_set(ht, "mentioner", "colision");
+	hash_table_set(ht, "python", "awesome");
 	return (EXIT_SUCCESS);
 }
