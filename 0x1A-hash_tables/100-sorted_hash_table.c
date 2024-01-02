@@ -238,11 +238,19 @@ int last_snode(shash_table_t *ht, shash_node_t *node)
 	}
 	else if (strcmp(last_node->key, node->key) > 0)
 	{
-		node->snext = last_node;
-		node->sprev = last_node->sprev;
-		if (ht->shead->snext == NULL)
+		if (last_node->sprev == NULL)
+		{
+			last_node->sprev = node;
+			node->snext = last_node;
 			ht->shead = node;
-		last_node->sprev = node;
+		}
+		else
+		{
+			last_node->sprev->snext = node;
+			node->sprev = last_node->sprev;
+			last_node->sprev = node;
+			node->snext = last_node;
+		}
 		return (1);
 	}
 	node->sprev = last_node;
