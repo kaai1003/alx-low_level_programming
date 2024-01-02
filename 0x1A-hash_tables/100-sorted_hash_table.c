@@ -300,7 +300,7 @@ void shash_table_print(const shash_table_t *ht)
 	}
 }
 /**
-* shash_table_print - print hash table function
+* shash_table_print_rev - print hash table function in reverse
 * @ht: pointer to hash table
 * Return: nothing to return
 */
