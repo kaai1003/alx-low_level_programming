@@ -150,7 +150,7 @@ int sorted_list(shash_table_t *ht, const char *key, const char *value)
 			if (strcmp(shead->key, this_node->key) == 0)
 			{
 				shead = update_snode(shead, this_node);
-				free(this_node);
+				free_node(this_node);
 				return (1);
 			}
 			else if (strcmp(shead->key, this_node->key) > 0)
@@ -233,7 +233,7 @@ int last_snode(shash_table_t *ht, shash_node_t *node)
 	{
 		last_node = update_snode(last_node, node);
 		ht->stail = last_node;
-		free(node);
+		free_node(node);
 		return (1);
 	}
 	else if (strcmp(last_node->key, node->key) > 0)
@@ -250,6 +250,17 @@ int last_snode(shash_table_t *ht, shash_node_t *node)
 	node->snext = NULL;
 	ht->stail = node;
 	return (1);
+}
+/**
+ * free_node - free node memory
+ * @node: pointer to node
+ * Return: nothing
+*/
+void free_node(shash_node_t *node)
+{
+	free(node->key);
+	free(node->value);
+	free(node);
 }
 /**
 * shash_table_print - print hash table function

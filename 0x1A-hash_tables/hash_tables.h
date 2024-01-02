@@ -85,7 +85,7 @@ shash_node_t *insert(shash_node_t *head, const char *key, const char *value);
 char *shash_table_get(const shash_table_t *ht, const char *key);
 void shash_table_print(const shash_table_t *ht);
 void shash_table_delete(shash_table_t *ht);
-void free_node(hash_node_t *node);
+void free_node(shash_node_t *node);
 void shash_table_print_rev(const shash_table_t *ht);
 int sorted_list(shash_table_t *ht, const char *key, const char *value);
 shash_node_t *prepare_snode(const char *key, const char *value);
