@@ -44,7 +44,7 @@ void print_list(int *array, int low, int high)
 {
 	int i = low;
 
-	printf("Searching in array: ");
+	printf("Searching in array:");
 	while (i <= high)
 	{
 		if (i == high)
