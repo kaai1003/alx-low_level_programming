@@ -30,6 +30,7 @@ int binary_search(int *array, size_t size, int value)
 		}
 		return (i);
 	}
+	print_list(array, low, high);
 	return (-1);
 }
 /**
